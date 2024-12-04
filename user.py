@@ -41,11 +41,11 @@ def create(user):
 def read_all():
     return users
 
-def read_one(username):
-    if username in users:
-        return users[username]
-    else:
-        return {"error": "Person not found"}, 404
+def read_one(id):
+    for user in users.values():
+        if user["id"] == id:
+            return user
+    return {"error": "Person not found"}, 404
 
 
 

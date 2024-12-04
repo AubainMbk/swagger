@@ -76,7 +76,7 @@ paths:
       responses:
         201:
           description: Succès dans la création
-  /users/{username}:
+  /users/{id}:
       get:
         operationId: user.read_one
         tags:
@@ -84,10 +84,10 @@ paths:
         summary: Lire les données d'une personne dans la liste user
         description: Lire un enregistrement dans la liste user
         parameters:
-          - name: username
+          - name: id
             in: path
-            description: Nom de la personne
-            type: string
+            description: ID de la personne
+            type: integer
             required: true
         responses:
           200:
