@@ -10,7 +10,7 @@ users = {
             "id": 1,
             "username": "elliot",
             "competences": "bg",
-            "age": "20",
+            "age": 20,
             "cv": "cv_elliot",
             "timestamp": get_timestamp()
         },
@@ -18,14 +18,11 @@ users = {
             "id": 2,
             "username": "elliot",
             "competences": "bg",
-            "age": "10",
+            "age": 10,
             "cv": "cv_elliot",
             "timestamp": get_timestamp()
         },
 }
-
-def read():
-    return [users[key] for key in sorted(users.keys())]
 
 def create(user):
     username = user.get("username")
@@ -41,14 +38,15 @@ def create(user):
     }
     return users[user], 201
 
-# def read_one(username):
-#     if username in users:
-#         return users[username]
-#     else:
-#         return {"error": "Person not found"}, 404
+def read_all():
+    return users
 
-# def read_all():
-#     return users
+def read_one(username):
+    if username in users:
+        return users[username]
+    else:
+        return {"error": "Person not found"}, 404
+
 
 
 

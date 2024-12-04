@@ -15,10 +15,10 @@ def main():
 def create():
     return render_template('create.html')
 
+
 @app.route('/update')
 def update():
     return render_template('update.html')
-
 
 
 @app.route('/read_all')
@@ -30,9 +30,11 @@ def read_all():
 def read_one():
     return render_template('read_one.html')
 
+
 @app.route('/delete')
 def delete():
     return render_template('delete.html')
+
 
 if __name__ == '__main__':
     app.run(host='172.21.224.1', port=5000)

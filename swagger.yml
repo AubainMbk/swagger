@@ -11,7 +11,7 @@ basePath: /api
 paths:
   /users:
     get:
-      operationId: user.read
+      operationId: user.read_all
       tags:
         - users
       summary: Lecture de la liste entière
@@ -42,7 +42,7 @@ paths:
                   type: string
                   description: Compétences de la personne
                 age:
-                  type: string
+                  type: integer
                   description: Age de la personne
                 cv:
                   type: string
@@ -68,7 +68,7 @@ paths:
                 type: string
                 description: Compétences de la personne
               age:
-                type: string
+                type: integer
                 description: Age de la personne
               cv:
                 type: string
@@ -76,3 +76,36 @@ paths:
       responses:
         201:
           description: Succès dans la création
+  /users/{username}:
+      get:
+        operationId: user.read_one
+        tags:
+          - users
+        summary: Lire les données d'une personne dans la liste user
+        description: Lire un enregistrement dans la liste user
+        parameters:
+          - name: username
+            in: path
+            description: Nom de la personne
+            type: string
+            required: true
+        responses:
+          200:
+            description: Succès dans la lecture
+            schema:
+              properties:
+                id:
+                  type: integer
+                  description: ID de la personne
+                username:
+                  type: string
+                  description: Nom de la personne
+                competences:
+                  type: string
+                  description: Compétences de la personne
+                age:
+                  type: integer
+                  description: Age de la personne
+                cv:
+                  type: string
+                  description: CV de la personne
