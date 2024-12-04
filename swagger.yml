@@ -10,10 +10,40 @@ produces:
 basePath: /api
 paths:
   /users:
+    post:
+      operationId: user.create
+      tags:
+        - Users
+      summary: Enregistrer une personne dans la liste user
+      description: Créer un nouvel enregistrement user
+      parameters:
+        - name: user
+          in: body
+          description: Enregistrement à créer
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: Nom de la personne
+              competences:
+                type: string
+                description: Compétences de la personne
+              age:
+                type: integer
+                description: Age de la personne
+              cv:
+                type: string
+                description: CV de la personne
+      responses:
+        201:
+          description: Succès dans la création
+    
     get:
       operationId: user.read_all
       tags:
-        - users
+        - Users
       summary: Lecture de la liste entière
       description: Lire la liste de personnes
       parameters:
@@ -47,56 +77,26 @@ paths:
                 cv:
                   type: string
                   description: CV de la personne
-    post:
-      operationId: user.create
-      tags:
-        - users
-      summary: Enregistrer une personne dans la liste user
-      description: Créer un nouvel enregistrement user
-      parameters:
-        - name: user
-          in: body
-          description: Enregistrement à créer
-          required: true
-          schema:
-            type: object
-            properties:
-              username:
-                type: string
-                description: Nom de la personne
-              competences:
-                type: string
-                description: Compétences de la personne
-              age:
-                type: integer
-                description: Age de la personne
-              cv:
-                type: string
-                description: CV de la personne
-      responses:
-        201:
-          description: Succès dans la création
-  /users/{username}:
+
+
+  /users/{id}:
       get:
         operationId: user.read_one
         tags:
-          - users
+          - Users
         summary: Lire les données d'une personne dans la liste user
         description: Lire un enregistrement dans la liste user
         parameters:
-          - name: username
+          - name: id
             in: path
-            description: Nom de la personne
-            type: string
+            description: ID de la personne
+            type: integer
             required: true
         responses:
           200:
             description: Succès dans la lecture
             schema:
               properties:
-                id:
-                  type: integer
-                  description: ID de la personne
                 username:
                   type: string
                   description: Nom de la personne
@@ -109,3 +109,54 @@ paths:
                 cv:
                   type: string
                   description: CV de la personne
+      put:
+        operationId: user.update
+        tags:
+          - Users
+        summary: Mettre à jour les données d'une personne dans la liste user
+        description: Mettre à jour un enregistrement
+        parameters:
+          - name: id
+            in: path
+            description: ID de la personne
+            type: integer
+            required: true
+          - name: user_data
+            in: body
+            description: Enregistrement à mettre à jour
+            required: true
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Nom de la personne
+                competences:
+                  type: string
+                  description: Compétences de la personne
+                age:
+                  type: integer
+                  description: Age de la personne
+                cv:
+                  type: string
+                  description: CV de la personne
+        responses:
+          200:
+            description: Succès dans la mise à jour
+          404:
+            description: Utilisateur non trouvé
+      delete:
+        operationId: user.delete
+        tags:
+          - Users
+        summary: Supprimer une personne de la liste user
+        description: Supprimer un enregistrement
+        parameters:
+          - name: id
+            in: path
+            description: ID de la personne
+            type: integer
+            required: true
+        responses:
+          200:
+            description: Succès dans la suppression

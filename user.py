@@ -41,26 +41,23 @@ def create(user):
 def read_all():
     return users
 
-def read_one(username):
-    if username in users:
-        return users[username]
-    else:
-        return {"error": "Person not found"}, 404
+def read_one(id):
+    for user in users.values():
+        if user["id"] == id:
+            return user
+    return {"error": "Person not found"}, 404
 
 
-
-
-# def update(lname, person):
-#     if lname in users:
-#         users[lname].update(person)
-#         users[lname]["timestamp"] = get_timestamp()
-#         return users[lname]
-#     else:
-#         return {"error": "Person not found"}, 404
+def update(id, user_data):
+    for username, user in users.items():
+        if user["id"] == id:
+            users[username].update(user_data)
+            return users[username]
+    return {"error": "Person not found"}, 404
     
-# def delete(lname):
-#     if lname in users:
-#         del users[lname]
-#         return {"message": "Person deleted"}
-#     else:
-#         return {"error": "Person not deleted"}, 404
+def delete(id):
+    for username, user in users.items():
+        if user["id"] == id:
+            del users[username]
+            return {"message": "Person deleted successfully"}
+    return {"error": "Person not found"}, 404
