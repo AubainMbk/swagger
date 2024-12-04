@@ -1,7 +1,10 @@
 from flask import Flask
 from flask.templating import render_template
 app = Flask(__name__)
+import connexion
 
+app = connexion.App(__name__, specification_dir='./')
+app.add_api('swagger.yml')
 
 @app.route('/')
 def main():
@@ -28,4 +31,4 @@ def cv_elliot():
     return render_template('cv_elliot.html')
 
 if __name__ == '__main__':
-    app.run(host='192.168.146.91', port=5000, debug=True)
+    app.run(host='172.21.224.1', port=5000)
