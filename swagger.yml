@@ -13,7 +13,7 @@ paths:
     get:
       operationId: user.read
       tags:
-        - Users
+        - users
       summary: Lecture de la liste entière
       description: Lire la liste de personnes
       parameters:
@@ -33,10 +33,8 @@ paths:
           schema:
             type: array
             items:
+              type: object
               properties:
-                id:
-                  type: integer
-                  description: ID de la personne
                 username:
                   type: string
                   description: Nom de la personne
@@ -44,8 +42,37 @@ paths:
                   type: string
                   description: Compétences de la personne
                 age:
-                  type: integer
+                  type: string
                   description: Age de la personne
                 cv:
                   type: string
                   description: CV de la personne
+    post:
+      operationId: user.create
+      tags:
+        - users
+      summary: Enregistrer une personne dans la liste user
+      description: Créer un nouvel enregistrement user
+      parameters:
+        - name: user
+          in: body
+          description: Enregistrement à créer
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: Nom de la personne
+              competences:
+                type: string
+                description: Compétences de la personne
+              age:
+                type: string
+                description: Age de la personne
+              cv:
+                type: string
+                description: CV de la personne
+      responses:
+        201:
+          description: Succès dans la création

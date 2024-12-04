@@ -11,24 +11,28 @@ def main():
     return render_template('main.html')
 
 
-@app.route('/cursus/remy')
-def cursus_remy():
-    return render_template('cursus_remy.html')
+@app.route('/create')
+def create():
+    return render_template('create.html')
 
-@app.route('/cursus/elliot')
-def cursus_elliot():
-    return render_template('cursus_elliot.html')
-
-
-
-@app.route('/cv/remy')
-def cv_remy():
-    return render_template('cv_remy.html')
+@app.route('/update')
+def update():
+    return render_template('update.html')
 
 
-@app.route('/cv/elliot')
-def cv_elliot():
-    return render_template('cv_elliot.html')
+
+@app.route('/read_all')
+def read_all():
+    return render_template('read_all.html')
+
+
+@app.route('/read_one')
+def read_one():
+    return render_template('read_one.html')
+
+@app.route('/delete')
+def delete():
+    return render_template('delete.html')
 
 if __name__ == '__main__':
     app.run(host='172.21.224.1', port=5000)

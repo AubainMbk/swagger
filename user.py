@@ -6,25 +6,40 @@ def get_timestamp():
 
 
 users = {
-        "Farrell": {
-        "username": "elliot",
-        "competences": "bg",
-        "age": 10,
-        "cv": "cv_elliot",
-        "timestamp": get_timestamp()
-    },
-        "HHHHH": {
-        "username": "elliot",
-        "competences": "bg",
-        "age": 10,
-        "cv": "cv_elliot",
-        "timestamp": get_timestamp()
-    },
+        "elliot": {
+            "id": 1,
+            "username": "elliot",
+            "competences": "bg",
+            "age": "20",
+            "cv": "cv_elliot",
+            "timestamp": get_timestamp()
+        },
+            "HHHHH": {
+            "id": 2,
+            "username": "elliot",
+            "competences": "bg",
+            "age": "10",
+            "cv": "cv_elliot",
+            "timestamp": get_timestamp()
+        },
 }
-
 
 def read():
     return [users[key] for key in sorted(users.keys())]
+
+def create(user):
+    username = user.get("username")
+    if username in users:
+        return {"error": "Person already exists"}, 400
+    users[username] = {
+        "id": len(users) + 1,
+        "username": username,
+        "competences": user.get("competences"),
+        "age": user.get("age"),
+        "cv": user.get("cv"),
+        "created_at": get_timestamp()
+    }
+    return users[user], 201
 
 # def read_one(username):
 #     if username in users:
@@ -35,16 +50,7 @@ def read():
 # def read_all():
 #     return users
 
-# def create(person):
-#     lname = person.get("username")
-#     if lname in users:
-#         return {"error": "Person already exists"}, 400
-#     users[lname] = {
-#         "username": person.get("username"),
-#         "competences": lname,
-#         "timestamp": get_timestamp()
-#     }
-#     return users[lname], 201
+
 
 # def update(lname, person):
 #     if lname in users:
