@@ -27,6 +27,15 @@ paths:
               username:
                 type: string
                 description: Nom de la personne
+              photo:
+                type: string
+                description: Photo de la personne
+              bio:
+                type: string
+                description: Biographie de la personne
+              exp_pro:
+                type: string
+                description: Expérience professionnelle de la personne
               competences:
                 type: string
                 description: Compétences de la personne
@@ -39,7 +48,7 @@ paths:
       responses:
         201:
           description: Succès dans la création
-    
+
     get:
       operationId: user.read_all
       tags:
@@ -78,85 +87,93 @@ paths:
                   type: string
                   description: CV de la personne
 
-
   /users/{id}:
-      get:
-        operationId: user.read_one
-        tags:
-          - Users
-        summary: Lire les données d'une personne dans la liste user
-        description: Lire un enregistrement dans la liste user
-        parameters:
-          - name: id
-            in: path
-            description: ID de la personne
-            type: integer
-            required: true
-        responses:
-          200:
-            description: Succès dans la lecture
-            schema:
-              properties:
-                username:
-                  type: string
-                  description: Nom de la personne
-                competences:
-                  type: string
-                  description: Compétences de la personne
-                age:
-                  type: integer
-                  description: Age de la personne
-                cv:
-                  type: string
-                  description: CV de la personne
-      put:
-        operationId: user.update
-        tags:
-          - Users
-        summary: Mettre à jour les données d'une personne dans la liste user
-        description: Mettre à jour un enregistrement
-        parameters:
-          - name: id
-            in: path
-            description: ID de la personne
-            type: integer
-            required: true
-          - name: user_data
-            in: body
-            description: Enregistrement à mettre à jour
-            required: true
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  description: Nom de la personne
-                competences:
-                  type: string
-                  description: Compétences de la personne
-                age:
-                  type: integer
-                  description: Age de la personne
-                cv:
-                  type: string
-                  description: CV de la personne
-        responses:
-          200:
-            description: Succès dans la mise à jour
-          404:
-            description: Utilisateur non trouvé
-      delete:
-        operationId: user.delete
-        tags:
-          - Users
-        summary: Supprimer une personne de la liste user
-        description: Supprimer un enregistrement
-        parameters:
-          - name: id
-            in: path
-            description: ID de la personne
-            type: integer
-            required: true
-        responses:
-          200:
-            description: Succès dans la suppression
+    get:
+      operationId: user.read_one
+      tags:
+        - Users
+      summary: Lire les données d'une personne dans la liste user
+      description: Lire un enregistrement dans la liste user
+      parameters:
+        - name: id
+          in: path
+          description: ID de la personne
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Succès dans la lecture
+          schema:
+            properties:
+              username:
+                type: string
+                description: Nom de la personne
+              competences:
+                type: string
+                description: Compétences de la personne
+              age:
+                type: integer
+                description: Age de la personne
+              cv:
+                type: string
+                description: CV de la personne
+    put:
+      operationId: user.update
+      tags:
+        - Users
+      summary: Mettre à jour les données d'une personne dans la liste user
+      description: Mettre à jour un enregistrement
+      parameters:
+        - name: id
+          in: path
+          description: ID de la personne
+          type: integer
+          required: true
+        - name: user_data
+          in: body
+          description: Enregistrement à mettre à jour
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: Nom de la personne
+              photo:
+                type: string
+                description: Photo de la personne
+              bio:
+                type: string
+                description: Biographie de la personne
+              exp_pro:
+                type: string
+                description: Expérience professionnelle de la personne
+              competences:
+                type: string
+                description: Compétences de la personne
+              age:
+                type: integer
+                description: Age de la personne
+              cv:
+                type: string
+                description: CV de la personne
+      responses:
+        200:
+          description: Succès dans la mise à jour
+        404:
+          description: Utilisateur non trouvé
+    delete:
+      operationId: user.delete
+      tags:
+        - Users
+      summary: Supprimer une personne de la liste user
+      description: Supprimer un enregistrement
+      parameters:
+        - name: id
+          in: path
+          description: ID de la personne
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Succès dans la suppression

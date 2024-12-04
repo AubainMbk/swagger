@@ -8,15 +8,21 @@ def get_timestamp():
 users = {
         "elliot": {
             "id": 1,
-            "username": "elliot",
-            "competences": "bg",
+            "username": "remy",
+            "photo": "photo_remy",
+            "bio": "bio_remy",
+            "exp_pro": "exp_pro_remy",
+            "competences": "beaucoups",
             "age": 20,
-            "cv": "cv_elliot",
+            "cv": "cv_remy",
             "timestamp": get_timestamp()
         },
             "HHHHH": {
             "id": 2,
             "username": "elliot",
+            "photo": "photo_elliot",
+            "bio": "bio_elliot",
+            "exp_pro": "exp_pro_elliot",
             "competences": "bg",
             "age": 10,
             "cv": "cv_elliot",
@@ -31,12 +37,15 @@ def create(user):
     users[username] = {
         "id": len(users) + 1,
         "username": username,
+        "photo": user.get("photo"),
+        "bio": user.get("bio"),
+        "exp_pro": user.get("exp_pro"),
         "competences": user.get("competences"),
         "age": user.get("age"),
         "cv": user.get("cv"),
         "created_at": get_timestamp()
     }
-    return users[user], 201
+    return users[username], 201
 
 def read_all():
     return users
