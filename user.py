@@ -48,15 +48,12 @@ def read_one(id):
     return {"error": "Person not found"}, 404
 
 
-
-
-# def update(lname, person):
-#     if lname in users:
-#         users[lname].update(person)
-#         users[lname]["timestamp"] = get_timestamp()
-#         return users[lname]
-#     else:
-#         return {"error": "Person not found"}, 404
+def update(id, user_data):
+    for username, user in users.items():
+        if user["id"] == id:
+            users[username].update(user_data)
+            return users[username]
+    return {"error": "Person not found"}, 404
     
 # def delete(lname):
 #     if lname in users:
