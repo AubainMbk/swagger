@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Formulaire</title>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="../static/design_formulaire.css"
+		/>
+        <script src="{{ url_for('static', filename='create_form_data') }}"></script>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<br />
+		<form class="box">
+			<h1 class="box-title">Vos informations</h1>
+			<input
+				type="text"
+				class="box-input"
+				name="Nom"
+				placeholder="Nom"
+				required
+			/>
+			<input
+				type="text"
+				class="box-input"
+				name="Prenom"
+				placeholder="Prenom"
+				required
+			/>
+			<textarea
+				class="box-input"
+				name="Bio"
+				placeholder="Bio"
+				required
+			></textarea>
+			<textarea
+				class="box-input"
+				name="Experiences professionelles"
+				placeholder="Experiences professionelles"
+				required
+			></textarea>
+			<textarea
+				class="box-input"
+				name="Competences"
+				placeholder="Competences"
+				required
+			></textarea>
+
+            <input
+            type="file"
+            id="filePhoto"
+            name="photo"
+            accept=".pdf"
+        />
+
+			<input
+				type="file"
+				id="filePdf"
+				name="file"
+				accept=".pdf"
+			/>
+			<div id="fileLink"></div>
+
+			<input
+				type="submit"
+				id="btn_submit"
+				value="Envoyer"
+				class="box-button"
+			/>
+		</form>
+
+		<script>
+			function uploadFile(event) {
+				const file = event.target.files[0];
+				if (file) {
+					const link = document.createElement("a");
+					link.href = URL.createObjectURL(file);
+					link.download = file.name;
+					link.textContent = `Télécharger ${file.name}`;
+					document.getElementById("fileLink").appendChild(link);
+				}
+			}
+			document
+				.getElementById("fileInput")
+				.addEventListener("change", uploadFile);
+		</script>
+		<script src="../static/create_form_data.js"></script>
+	</body>
+</html>
