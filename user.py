@@ -55,9 +55,9 @@ def update(id, user_data):
             return users[username]
     return {"error": "Person not found"}, 404
     
-# def delete(lname):
-#     if lname in users:
-#         del users[lname]
-#         return {"message": "Person deleted"}
-#     else:
-#         return {"error": "Person not deleted"}, 404
+def delete(id):
+    for username, user in users.items():
+        if user["id"] == id:
+            del users[username]
+            return {"message": "Person deleted successfully"}
+    return {"error": "Person not found"}, 404

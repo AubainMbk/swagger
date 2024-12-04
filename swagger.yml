@@ -145,3 +145,18 @@ paths:
             description: Succès dans la mise à jour
           404:
             description: Utilisateur non trouvé
+      delete:
+        operationId: user.delete
+        tags:
+          - Users
+        summary: Supprimer une personne de la liste user
+        description: Supprimer un enregistrement
+        parameters:
+          - name: id
+            in: path
+            description: ID de la personne
+            type: integer
+            required: true
+        responses:
+          200:
+            description: Succès dans la suppression
