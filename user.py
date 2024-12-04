@@ -24,9 +24,6 @@ users = {
         },
 }
 
-def read():
-    return [users[key] for key in sorted(users.keys())]
-
 def create(user):
     username = user.get("username")
     if username in users:
@@ -41,14 +38,15 @@ def create(user):
     }
     return users[user], 201
 
+def read_all():
+    return users
+
 # def read_one(username):
 #     if username in users:
 #         return users[username]
 #     else:
 #         return {"error": "Person not found"}, 404
 
-# def read_all():
-#     return users
 
 
 

@@ -11,7 +11,7 @@ basePath: /api
 paths:
   /users:
     get:
-      operationId: user.read
+      operationId: user.read_all
       tags:
         - users
       summary: Lecture de la liste entière
