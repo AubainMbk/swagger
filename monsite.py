@@ -12,9 +12,9 @@ def main():
 def cursus_remy():
     return render_template('cursus_remy.html')
 
-@app.route('/cursus/eliott')
-def cursus_eliott():
-    return render_template('cursus_eliott.html')
+@app.route('/cursus/elliot')
+def cursus_elliot():
+    return render_template('cursus_elliot.html')
 
 
 
@@ -23,9 +23,9 @@ def cv_remy():
     return render_template('cv_remy.html')
 
 
-@app.route('/cv/eliott')
-def cv_eliott():
-    return render_template('cv_eliott.html')
+@app.route('/cv/elliot')
+def cv_elliot():
+    return render_template('cv_elliot.html')
 
 if __name__ == '__main__':
     app.run(host='192.168.146.91', port=5000, debug=True)
